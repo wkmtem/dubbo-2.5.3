@@ -77,5 +77,40 @@
 6、package打包jar文件路径：
     1、核心包：E:\Project_idea\dubbo-dubbo-2.5.3\dubbo\target下dubbo-2.5.3.jar、dubbo-2.5.3-sources.jar
     2、管理控制台：E:\Project_idea\dubbo-dubbo-2.5.3\dubbo-admin\target下dubbo-admin-2.5.3.war
+       修改: WEB-INF下dubbo.properties: dubbo.registry.address=zookeeper://192.168.0.201:2181?client=zkclient
+       默认用户: root、guest。tomcat-jdk7中运行。
+       jdk8中运行,需修改POM:
+       1、citrus-webx-all改为3.1.6
+       <dependency>
+           <groupId>com.alibaba.citrus</groupId>
+           <artifactId>citrus-webx-all</artifactId>
+           <version>3.1.6</version>
+       </dependency>
+       2、添加velocity的依赖
+       <dependency>
+           <groupId>org.apache.velocity</groupId>
+           <artifactId>velocity</artifactId>
+           <version>1.7</version>
+       </dependency>
+       3、禁止传递spring
+       <dependency>
+           <groupId>com.alibaba</groupId>
+           <artifactId>dubbo</artifactId>
+           <version>${project.parent.version}</version>
+           <exclusions>
+               <exclusion>
+                   <groupId>org.springframework</groupId>
+                   <artifactId>spring</artifactId>
+               </exclusion>
+           </exclusions>
+       </dependency>
+       4、webx已有spring 3以上的依赖，因此注释掉dubbo-admin里面的spring依赖
+       <!--<dependency>-->
+           <!--<groupId>org.springframework</groupId>-->
+           <!--<artifactId>spring</artifactId>-->
+       <!--</dependency>-->
+       5、确定war包解压后lib目录没有spring 3 以下的依赖。
     3、简易监控中心：E:\Project_idea\dubbo-dubbo-2.5.3\dubbo-simple\dubbo-monitor-simple\target下dubbo-monitor-simple-2.5.3-assembly.tar.gz
+       配置注册: /conf/dubbo.properties
+       向注册中心注册监控中心地址: dubbo.registry.address=zookeeper://192.168.0.201:2181?client=zkclient
     4、简易注册中心：E:\Project_idea\dubbo-dubbo-2.5.3\dubbo-simple\dubbo-registry-simple\target下dubbo-registry-simple-2.5.3-assembly.tar.gz
