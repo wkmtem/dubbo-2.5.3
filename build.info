@@ -77,7 +77,7 @@
 6、package打包jar文件路径：
     1、核心包：E:\Project_idea\dubbo-dubbo-2.5.3\dubbo\target下dubbo-2.5.3.jar、dubbo-2.5.3-sources.jar
     2、管理控制台：E:\Project_idea\dubbo-dubbo-2.5.3\dubbo-admin\target下dubbo-admin-2.5.3.war
-       修改: WEB-INF下dubbo.properties: dubbo.registry.address=zookeeper://192.168.0.201:2181?client=zkclient
+       向注册中心注册: 修改: WEB-INF下dubbo.properties: dubbo.registry.address=zookeeper://192.168.0.201:2181?client=zkclient
        默认用户: root、guest。tomcat-jdk7中运行。
        jdk8中运行,需修改POM:
        1、citrus-webx-all改为3.1.6
